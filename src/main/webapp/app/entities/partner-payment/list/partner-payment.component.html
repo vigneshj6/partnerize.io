@@ -1,0 +1,156 @@
+<div>
+  <h2 id="page-heading" data-cy="PartnerPaymentHeading">
+    <span jhiTranslate="partnerizeApp.partnerPayment.home.title">Partner Payments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="partnerizeApp.partnerPayment.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-partner-payment"
+        [routerLink]="['/partner-payment/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="partnerizeApp.partnerPayment.home.createLabel"> Create a new Partner Payment </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="partnerPayments?.length === 0">
+    <span jhiTranslate="partnerizeApp.partnerPayment.home.notFound">No Partner Payments found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="partnerPayments && partnerPayments.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="invoice">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.invoice">Invoice</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalAmount">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.totalAmount">Total Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tax">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.tax">Tax</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="on">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.on">On</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reason">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.reason">Reason</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contract.id">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.contract">Contract</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="partner.id">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.partner">Partner</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="company.id">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.partnerPayment.company">Company</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let partnerPayment of partnerPayments; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/partner-payment', partnerPayment.id, 'view']">{{ partnerPayment.id }}</a>
+          </td>
+          <td>{{ partnerPayment.invoice }}</td>
+          <td>{{ partnerPayment.totalAmount }}</td>
+          <td>{{ partnerPayment.tax }}</td>
+          <td>{{ partnerPayment.on | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'partnerizeApp.PaymentStatus.' + partnerPayment.status }}">{{ partnerPayment.status }}</td>
+          <td>{{ partnerPayment.reason }}</td>
+          <td>
+            <div *ngIf="partnerPayment.contract">
+              <a [routerLink]="['/contract', partnerPayment.contract.id, 'view']">{{ partnerPayment.contract.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="partnerPayment.partner">
+              <a [routerLink]="['/partner', partnerPayment.partner.id, 'view']">{{ partnerPayment.partner.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="partnerPayment.company">
+              <a [routerLink]="['/company', partnerPayment.company.id, 'view']">{{ partnerPayment.company.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/partner-payment', partnerPayment.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/partner-payment', partnerPayment.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(partnerPayment)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

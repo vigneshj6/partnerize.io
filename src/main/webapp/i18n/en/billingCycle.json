@@ -1,0 +1,10 @@
+{
+  "partnerizeApp": {
+    "BillingCycle": {
+      "null": "",
+      "WEEK": "WEEK",
+      "MONTH": "MONTH",
+      "YEAR": "YEAR"
+    }
+  }
+}

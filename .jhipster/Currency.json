@@ -1,0 +1,37 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015205556",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "currency",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Currency",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "contract",
+      "otherEntityRelationshipName": "currency",
+      "relationshipName": "contract",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "sale",
+      "otherEntityRelationshipName": "currency",
+      "relationshipName": "sale",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,29 @@
+{
+  "partnerizeApp": {
+    "paymentEvent": {
+      "home": {
+        "title": "Payment Events",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payment Event",
+        "createOrEditLabel": "Create or edit a Payment Event",
+        "notFound": "No Payment Events found"
+      },
+      "created": "A new Payment Event is created with identifier {{ param }}",
+      "updated": "A Payment Event is updated with identifier {{ param }}",
+      "deleted": "A Payment Event is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payment Event {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment Event"
+      },
+      "id": "ID",
+      "status": "Status",
+      "reason": "Reason",
+      "on": "On",
+      "totalAmount": "Total Amount",
+      "invoice": "Invoice",
+      "partnerPayment": "Partner Payment"
+    }
+  }
+}

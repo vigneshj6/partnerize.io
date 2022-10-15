@@ -1,0 +1,47 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015205656",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "card",
+  "fields": [
+    {
+      "fieldName": "token",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "auth",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "key",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "account",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Card",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "card",
+      "ownerSide": false,
+      "relationshipName": "partner",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "card",
+      "ownerSide": false,
+      "relationshipName": "company",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

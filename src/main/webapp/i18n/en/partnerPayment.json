@@ -1,0 +1,33 @@
+{
+  "partnerizeApp": {
+    "partnerPayment": {
+      "home": {
+        "title": "Partner Payments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Partner Payment",
+        "createOrEditLabel": "Create or edit a Partner Payment",
+        "notFound": "No Partner Payments found"
+      },
+      "created": "A new Partner Payment is created with identifier {{ param }}",
+      "updated": "A Partner Payment is updated with identifier {{ param }}",
+      "deleted": "A Partner Payment is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Partner Payment {{ id }}?"
+      },
+      "detail": {
+        "title": "Partner Payment"
+      },
+      "id": "ID",
+      "invoice": "Invoice",
+      "totalAmount": "Total Amount",
+      "tax": "Tax",
+      "on": "On",
+      "status": "Status",
+      "reason": "Reason",
+      "contract": "Contract",
+      "partner": "Partner",
+      "company": "Company",
+      "paymentEvent": "Payment Event"
+    }
+  }
+}

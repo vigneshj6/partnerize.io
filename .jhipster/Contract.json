@@ -1,0 +1,75 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015205756",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "contract",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "ContractType",
+      "fieldValues": "FIXED,COMMISSION_PER_SALE,COMMISSION_RECURRING,COMMISSION_ON_REVENUE"
+    },
+    {
+      "fieldName": "startAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "billingCycle",
+      "fieldType": "BillingCycle",
+      "fieldValues": "WEEK,MONTH,YEAR"
+    },
+    {
+      "fieldName": "fixedRate",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "commisionPercent",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "commisionRate",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Contract",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "currency",
+      "otherEntityRelationshipName": "contract",
+      "relationshipName": "currency",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "contract",
+      "relationshipName": "partner",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "contract",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "partnerPayment",
+      "otherEntityRelationshipName": "contract",
+      "relationshipName": "partnerPayment",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

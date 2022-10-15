@@ -1,0 +1,39 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015210256",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "customer",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Customer",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "partner",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "sale",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "sale",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

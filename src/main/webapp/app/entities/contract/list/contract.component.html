@@ -1,0 +1,170 @@
+<div>
+  <h2 id="page-heading" data-cy="ContractHeading">
+    <span jhiTranslate="partnerizeApp.contract.home.title">Contracts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="partnerizeApp.contract.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contract"
+        [routerLink]="['/contract/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="partnerizeApp.contract.home.createLabel"> Create a new Contract </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contracts?.length === 0">
+    <span jhiTranslate="partnerizeApp.contract.home.notFound">No Contracts found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="contracts && contracts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.type">Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startAt">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.startAt">Start At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endAt">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.endAt">End At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="billingCycle">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.billingCycle">Billing Cycle</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fixedRate">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.fixedRate">Fixed Rate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commisionPercent">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.commisionPercent">Commision Percent</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commisionRate">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.commisionRate">Commision Rate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currency.id">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.currency">Currency</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="partner.id">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.partner">Partner</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="company.id">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.contract.company">Company</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contract of contracts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contract', contract.id, 'view']">{{ contract.id }}</a>
+          </td>
+          <td>{{ contract.name }}</td>
+          <td jhiTranslate="{{ 'partnerizeApp.ContractType.' + contract.type }}">{{ contract.type }}</td>
+          <td>{{ contract.startAt | formatMediumDatetime }}</td>
+          <td>{{ contract.endAt | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'partnerizeApp.BillingCycle.' + contract.billingCycle }}">{{ contract.billingCycle }}</td>
+          <td>{{ contract.fixedRate }}</td>
+          <td>{{ contract.commisionPercent }}</td>
+          <td>{{ contract.commisionRate }}</td>
+          <td>
+            <div *ngIf="contract.currency">
+              <a [routerLink]="['/currency', contract.currency.id, 'view']">{{ contract.currency.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="contract.partner">
+              <a [routerLink]="['/partner', contract.partner.id, 'view']">{{ contract.partner.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="contract.company">
+              <a [routerLink]="['/company', contract.company.id, 'view']">{{ contract.company.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contract', contract.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contract', contract.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contract)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

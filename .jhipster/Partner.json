@@ -1,0 +1,74 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015205356",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "partner",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "region",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Partner",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "card",
+      "otherEntityRelationshipName": "partner",
+      "ownerSide": true,
+      "relationshipName": "card",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "sale",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "sale",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "contract",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "contract",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "customer",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "partnerPayment",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "partnerPayment",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

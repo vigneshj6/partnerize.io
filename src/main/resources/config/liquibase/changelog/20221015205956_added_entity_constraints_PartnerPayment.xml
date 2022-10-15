@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity PartnerPayment.
+    -->
+    <changeSet id="20221015205956-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="contract_id"
+                                 baseTableName="partner_payment"
+                                 constraintName="fk_partner_payment__contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contract"/>
+
+        <addForeignKeyConstraint baseColumnNames="partner_id"
+                                 baseTableName="partner_payment"
+                                 constraintName="fk_partner_payment__partner_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="partner"/>
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="partner_payment"
+                                 constraintName="fk_partner_payment__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"/>
+    </changeSet>
+</databaseChangeLog>

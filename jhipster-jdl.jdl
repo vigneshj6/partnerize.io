@@ -1,0 +1,141 @@
+application {
+  config {
+    baseName partnerize,
+    applicationType monolith,
+    packageName io.partnerize,
+    authenticationType oauth2,
+    prodDatabaseType mysql,
+    clientFramework angularX
+  }
+  entities *
+  dto * with mapstruct
+  service * with serviceClass
+  paginate * with pagination
+}
+
+
+entity Partner {
+	name String,
+    type String,
+    region String,
+    country String,
+    status String
+}
+
+entity Company {
+	name String,
+    region String,
+    country String,
+    status String
+}
+
+enum BillingCycle {
+	WEEK,
+    MONTH,
+    YEAR
+}
+
+enum ContractType {
+	FIXED,
+    COMMISSION_PER_SALE,
+    COMMISSION_RECURRING,
+    COMMISSION_ON_REVENUE
+}
+
+entity Currency{
+	name String,
+    code String
+}
+
+entity Card {
+    token String,
+    auth String,
+    key String,
+    account String,
+}
+
+entity Contract {
+	name String,
+    type ContractType,
+    startAt Instant,
+    endAt Instant,
+    billingCycle BillingCycle,
+    fixedRate BigDecimal,
+    commisionPercent BigDecimal,
+    commisionRate BigDecimal,
+    
+}
+
+entity Sale{
+	saleId String,
+    invoice String,
+    totalAmount BigDecimal,
+    tax BigDecimal,
+    couponCode String,
+    couponAmount BigDecimal,
+    on Instant
+}
+
+enum PaymentType {
+	MANUAL,
+    CREDIT,
+    DEBIT,
+    SWIFT,
+    SEPA
+}
+
+enum PaymentStatus{
+COMPLETED,
+CREATED,
+FAILED,
+WAIT_FOR_RESPONSE
+}
+
+entity PartnerPayment {
+	invoice String,
+    totalAmount BigDecimal,
+    tax BigDecimal,
+    on Instant,
+    status PaymentStatus,
+    reason String
+}
+
+entity PaymentEvent {
+status PaymentStatus,
+reason String,
+on Instant,
+totalAmount BigDecimal,
+invoice String
+}
+
+entity PartnerRevene{
+
+
+}
+
+entity Customer{
+	name String,
+    
+}
+
+relationship OneToOne {
+	Partner to Card,
+    Company to Card
+}
+
+relationship ManyToOne  {
+  Contract to Currency,
+  Sale to Currency,
+  Sale to Customer,
+  Sale to Partner,
+  Contract to Partner,
+  Customer to Partner,
+  PartnerPayment to Contract,
+  PartnerPayment to Partner,
+  PartnerPayment to Company,
+  Sale to Company,
+  Contract to Company,
+  Customer to Company,
+  Partner to Company,
+  PaymentEvent to PartnerPayment
+}

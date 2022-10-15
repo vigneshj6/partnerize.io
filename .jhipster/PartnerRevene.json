@@ -1,0 +1,15 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015210156",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "partner_revene",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PartnerRevene",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

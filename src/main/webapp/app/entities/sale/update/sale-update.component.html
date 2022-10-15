@@ -1,0 +1,160 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-sale-heading" data-cy="SaleCreateUpdateHeading" jhiTranslate="partnerizeApp.sale.home.createOrEditLabel">
+        Create or edit a Sale
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.saleId" for="field_saleId">Sale Id</label>
+          <input type="text" class="form-control" name="saleId" id="field_saleId" data-cy="saleId" formControlName="saleId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.invoice" for="field_invoice">Invoice</label>
+          <input type="text" class="form-control" name="invoice" id="field_invoice" data-cy="invoice" formControlName="invoice" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.totalAmount" for="field_totalAmount">Total Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalAmount"
+            id="field_totalAmount"
+            data-cy="totalAmount"
+            formControlName="totalAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.tax" for="field_tax">Tax</label>
+          <input type="number" class="form-control" name="tax" id="field_tax" data-cy="tax" formControlName="tax" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.couponCode" for="field_couponCode">Coupon Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="couponCode"
+            id="field_couponCode"
+            data-cy="couponCode"
+            formControlName="couponCode"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.couponAmount" for="field_couponAmount">Coupon Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="couponAmount"
+            id="field_couponAmount"
+            data-cy="couponAmount"
+            formControlName="couponAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.on" for="field_on">On</label>
+          <div class="d-flex">
+            <input
+              id="field_on"
+              data-cy="on"
+              type="datetime-local"
+              class="form-control"
+              name="on"
+              formControlName="on"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.currency" for="field_currency">Currency</label>
+          <select
+            class="form-control"
+            id="field_currency"
+            data-cy="currency"
+            name="currency"
+            formControlName="currency"
+            [compareWith]="compareCurrency"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="currencyOption" *ngFor="let currencyOption of currenciesSharedCollection">{{ currencyOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.customer" for="field_customer">Customer</label>
+          <select
+            class="form-control"
+            id="field_customer"
+            data-cy="customer"
+            name="customer"
+            formControlName="customer"
+            [compareWith]="compareCustomer"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="customerOption" *ngFor="let customerOption of customersSharedCollection">{{ customerOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.partner" for="field_partner">Partner</label>
+          <select
+            class="form-control"
+            id="field_partner"
+            data-cy="partner"
+            name="partner"
+            formControlName="partner"
+            [compareWith]="comparePartner"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="partnerOption" *ngFor="let partnerOption of partnersSharedCollection">{{ partnerOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="partnerizeApp.sale.company" for="field_company">Company</label>
+          <select
+            class="form-control"
+            id="field_company"
+            data-cy="company"
+            name="company"
+            formControlName="company"
+            [compareWith]="compareCompany"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="companyOption" *ngFor="let companyOption of companiesSharedCollection">{{ companyOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

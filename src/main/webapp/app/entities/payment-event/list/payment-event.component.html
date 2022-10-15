@@ -1,0 +1,127 @@
+<div>
+  <h2 id="page-heading" data-cy="PaymentEventHeading">
+    <span jhiTranslate="partnerizeApp.paymentEvent.home.title">Payment Events</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="partnerizeApp.paymentEvent.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-payment-event"
+        [routerLink]="['/payment-event/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="partnerizeApp.paymentEvent.home.createLabel"> Create a new Payment Event </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="paymentEvents?.length === 0">
+    <span jhiTranslate="partnerizeApp.paymentEvent.home.notFound">No Payment Events found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="paymentEvents && paymentEvents.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.paymentEvent.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reason">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.paymentEvent.reason">Reason</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="on">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.paymentEvent.on">On</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalAmount">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.paymentEvent.totalAmount">Total Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="invoice">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.paymentEvent.invoice">Invoice</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="partnerPayment.id">
+            <div class="d-flex">
+              <span jhiTranslate="partnerizeApp.paymentEvent.partnerPayment">Partner Payment</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paymentEvent of paymentEvents; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/payment-event', paymentEvent.id, 'view']">{{ paymentEvent.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'partnerizeApp.PaymentStatus.' + paymentEvent.status }}">{{ paymentEvent.status }}</td>
+          <td>{{ paymentEvent.reason }}</td>
+          <td>{{ paymentEvent.on | formatMediumDatetime }}</td>
+          <td>{{ paymentEvent.totalAmount }}</td>
+          <td>{{ paymentEvent.invoice }}</td>
+          <td>
+            <div *ngIf="paymentEvent.partnerPayment">
+              <a [routerLink]="['/partner-payment', paymentEvent.partnerPayment.id, 'view']">{{ paymentEvent.partnerPayment.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/payment-event', paymentEvent.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/payment-event', paymentEvent.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(paymentEvent)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

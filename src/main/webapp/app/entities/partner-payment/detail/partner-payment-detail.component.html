@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="partnerPayment">
+      <h2 data-cy="partnerPaymentDetailsHeading"><span jhiTranslate="partnerizeApp.partnerPayment.detail.title">Partner Payment</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ partnerPayment.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.invoice">Invoice</span></dt>
+        <dd>
+          <span>{{ partnerPayment.invoice }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.totalAmount">Total Amount</span></dt>
+        <dd>
+          <span>{{ partnerPayment.totalAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.tax">Tax</span></dt>
+        <dd>
+          <span>{{ partnerPayment.tax }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.on">On</span></dt>
+        <dd>
+          <span>{{ partnerPayment.on | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'partnerizeApp.PaymentStatus.' + partnerPayment.status }}">{{ partnerPayment.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.reason">Reason</span></dt>
+        <dd>
+          <span>{{ partnerPayment.reason }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.contract">Contract</span></dt>
+        <dd>
+          <div *ngIf="partnerPayment.contract">
+            <a [routerLink]="['/contract', partnerPayment.contract.id, 'view']">{{ partnerPayment.contract.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.partner">Partner</span></dt>
+        <dd>
+          <div *ngIf="partnerPayment.partner">
+            <a [routerLink]="['/partner', partnerPayment.partner.id, 'view']">{{ partnerPayment.partner.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.partnerPayment.company">Company</span></dt>
+        <dd>
+          <div *ngIf="partnerPayment.company">
+            <a [routerLink]="['/company', partnerPayment.company.id, 'view']">{{ partnerPayment.company.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/partner-payment', partnerPayment.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

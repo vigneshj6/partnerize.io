@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sale">
+      <h2 data-cy="saleDetailsHeading"><span jhiTranslate="partnerizeApp.sale.detail.title">Sale</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ sale.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.saleId">Sale Id</span></dt>
+        <dd>
+          <span>{{ sale.saleId }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.invoice">Invoice</span></dt>
+        <dd>
+          <span>{{ sale.invoice }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.totalAmount">Total Amount</span></dt>
+        <dd>
+          <span>{{ sale.totalAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.tax">Tax</span></dt>
+        <dd>
+          <span>{{ sale.tax }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.couponCode">Coupon Code</span></dt>
+        <dd>
+          <span>{{ sale.couponCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.couponAmount">Coupon Amount</span></dt>
+        <dd>
+          <span>{{ sale.couponAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.on">On</span></dt>
+        <dd>
+          <span>{{ sale.on | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.currency">Currency</span></dt>
+        <dd>
+          <div *ngIf="sale.currency">
+            <a [routerLink]="['/currency', sale.currency.id, 'view']">{{ sale.currency.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.customer">Customer</span></dt>
+        <dd>
+          <div *ngIf="sale.customer">
+            <a [routerLink]="['/customer', sale.customer.id, 'view']">{{ sale.customer.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.partner">Partner</span></dt>
+        <dd>
+          <div *ngIf="sale.partner">
+            <a [routerLink]="['/partner', sale.partner.id, 'view']">{{ sale.partner.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="partnerizeApp.sale.company">Company</span></dt>
+        <dd>
+          <div *ngIf="sale.company">
+            <a [routerLink]="['/company', sale.company.id, 'view']">{{ sale.company.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sale', sale.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

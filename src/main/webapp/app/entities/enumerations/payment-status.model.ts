@@ -1,0 +1,9 @@
+export enum PaymentStatus {
+  COMPLETED = 'COMPLETED',
+
+  CREATED = 'CREATED',
+
+  FAILED = 'FAILED',
+
+  WAIT_FOR_RESPONSE = 'WAIT_FOR_RESPONSE',
+}

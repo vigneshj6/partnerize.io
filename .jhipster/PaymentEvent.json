@@ -1,0 +1,44 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015210056",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "payment_event",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "PaymentStatus",
+      "fieldValues": "COMPLETED,CREATED,FAILED,WAIT_FOR_RESPONSE"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "on",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "invoice",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PaymentEvent",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "partnerPayment",
+      "otherEntityRelationshipName": "paymentEvent",
+      "relationshipName": "partnerPayment",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

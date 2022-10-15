@@ -1,0 +1,66 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015205956",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "partner_payment",
+  "fields": [
+    {
+      "fieldName": "invoice",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "tax",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "on",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "PaymentStatus",
+      "fieldValues": "COMPLETED,CREATED,FAILED,WAIT_FOR_RESPONSE"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PartnerPayment",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "contract",
+      "otherEntityRelationshipName": "partnerPayment",
+      "relationshipName": "contract",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "partnerPayment",
+      "relationshipName": "partner",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "partnerPayment",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "paymentEvent",
+      "otherEntityRelationshipName": "partnerPayment",
+      "relationshipName": "paymentEvent",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

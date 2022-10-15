@@ -1,0 +1,69 @@
+{
+  "applications": ["partnerize"],
+  "changelogDate": "20221015205856",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "sale",
+  "fields": [
+    {
+      "fieldName": "saleId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "invoice",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "tax",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "couponCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "couponAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "on",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Sale",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "currency",
+      "otherEntityRelationshipName": "sale",
+      "relationshipName": "currency",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "sale",
+      "relationshipName": "customer",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "partner",
+      "otherEntityRelationshipName": "sale",
+      "relationshipName": "partner",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "sale",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
