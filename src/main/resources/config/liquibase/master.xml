@@ -18,6 +18,23 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="changelog/20221015205356_added_entity_Partner.xml"  relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205456_added_entity_Company.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205556_added_entity_Currency.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205656_added_entity_Card.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205756_added_entity_Contract.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205856_added_entity_Sale.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205956_added_entity_PartnerPayment.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015210056_added_entity_PaymentEvent.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015210156_added_entity_PartnerRevene.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015210256_added_entity_Customer.xml" relativeToChangelogFile="true"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="changelog/20221015205356_added_entity_constraints_Partner.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205456_added_entity_constraints_Company.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205756_added_entity_constraints_Contract.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205856_added_entity_constraints_Sale.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015205956_added_entity_constraints_PartnerPayment.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015210056_added_entity_constraints_PaymentEvent.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20221015210256_added_entity_constraints_Customer.xml" relativeToChangelogFile="true"/>
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

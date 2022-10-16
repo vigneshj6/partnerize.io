@@ -58,12 +58,7 @@ public class LiquibaseConfiguration {
         liquibase.setChangeLogParameters(liquibaseProperties.getParameters());
         liquibase.setRollbackFile(liquibaseProperties.getRollbackFile());
         liquibase.setTestRollbackOnUpdate(liquibaseProperties.isTestRollbackOnUpdate());
-        if (env.acceptsProfiles(Profiles.of(JHipsterConstants.SPRING_PROFILE_NO_LIQUIBASE))) {
-            liquibase.setShouldRun(false);
-        } else {
-            liquibase.setShouldRun(liquibaseProperties.isEnabled());
-            log.debug("Configuring Liquibase");
-        }
+        liquibase.setShouldRun(true);
         return liquibase;
     }
 }
